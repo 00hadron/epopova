@@ -22,6 +22,6 @@ public class CalculateTest {
 	String expect = "Echo, echo, echo : epopova";
 	Calculate calc = new Calculate();
 	String result = calc.echo(input);
-	assertThat(result,is(expect));
+	assertThat(result, is(expect));
 	}
 }
