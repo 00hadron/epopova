@@ -4,6 +4,9 @@ package ru.job4j.calculator;
  * Программа расчета идеального веса.
  */
 public class Fit {
+    private final double K_MAN = 100;
+    private final double K_WOMAN = 110;
+    private final double K_MULT  = 1.15;
 
     /**
      * Идеальный вес для мужщины.
@@ -11,7 +14,7 @@ public class Fit {
      * @return идеальный вес.
      */
     double manWeight(double height) {
-        return (height-100)*1.15;
+        return (height - K_MAN) * K_MULT;
     }
 
     /**
@@ -20,6 +23,6 @@ public class Fit {
      * @return идеальный вес.
      */
     double womanWeight(double height) {
-        return (height-110)*1.15;
+        return (height - K_WOMAN) * K_MULT;
     }
 }
