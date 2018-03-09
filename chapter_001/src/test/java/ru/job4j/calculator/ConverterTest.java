@@ -5,37 +5,50 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class ConverterTest {
+    private final int EURO_RATE = 70;
+    private final int DOLLAR_RATE = 60;
+
     @Test
     public void when60RubleToDollarThen1() {
-        Converter converter = new Converter();
-        converter.rubleToDollar(60, 60);
-        int result = converter.getResult();
+        int valueRubleToDollar = 60;
         int expected = 1;
+        int result;
+        Converter converter = new Converter();
+        converter.rubleToDollar(valueRubleToDollar, DOLLAR_RATE);
+        result = converter.getResult();
         assertThat(result, is(expected));
     }
 
     @Test
     public void when70RubleToEuroThen1() {
-        Converter converter = new Converter();
-        converter.rubleToEuro(70, 70);
-        int result = converter.getResult();
+        int valueRubleToEuro = 70;
         int expected = 1;
+        int result;
+        Converter converter = new Converter();
+        converter.rubleToEuro(valueRubleToEuro, EURO_RATE);
+        result = converter.getResult();
         assertThat(result, is(expected));
     }
 
     @Test
     public void when1DollarToRubleThen60() {
+        int valueDollarToRuble = 1;
+        int expected = 60;
+        int result;
         Converter converter = new Converter();
-        converter.dollarToRuble(1,60);
-        int result = converter.getResult();
-        assertThat(result, is(60));
+        converter.dollarToRuble(valueDollarToRuble, DOLLAR_RATE);
+        result = converter.getResult();
+        assertThat(result, is(expected));
     }
 
     @Test
     public void when1EuroToRubleThen70() {
+        int valueEuroToRuble = 1;
+        int expected = 70;
+        int result;
         Converter converter = new Converter();
-        converter.euroToRuble(1, 70);
-        int result = converter.getResult();
-        assertThat(result, is(70));
+        converter.euroToRuble(valueEuroToRuble, EURO_RATE);
+        result = converter.getResult();
+        assertThat(result, is(expected));
     }
 }
