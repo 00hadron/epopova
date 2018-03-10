@@ -47,15 +47,13 @@ public class Triangle {
      * @return Вернуть прощадь, если треугольник существует или -1, если треугольника нет.
      */
     public double area() {
-        double rsl;
+        double rsl = -1;
         double ab = this.a.distanceTo(this.b);
         double ac = this.a.distanceTo(this.c);
         double bc = this.b.distanceTo(this.c);
         double p = this.period(ab, ac, bc);
 
-        if (this.exist(ab, ac, bc)) {
-            rsl = Math.sqrt(p * (p - ab) * (p - ac) * (p - bc));
-        } else rsl = -1;
+        if (this.exist(ab, ac, bc)) rsl = Math.sqrt(p * (p - ab) * (p - ac) * (p - bc));
 
         System.out.println("rsl = " + rsl);
         return rsl;
@@ -70,11 +68,7 @@ public class Triangle {
      * @return false или true.
      */
     private boolean exist(double ab, double ac, double bc) {
-        if ((ab >= (ac + bc))||(ac >= (ab + bc))||(bc >= (ab + ac))){
-            System.out.println("Не возможно построить треугольник! ");
-            return false;
-        } else
-            return true;
+        return ((ab >= (ac + bc))||(ac >= (ab + bc))||(bc >= (ab + ac)))? false:true;
     }
 }
 
