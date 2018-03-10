@@ -10,16 +10,27 @@ public class Max {
     private int result;
 
     /**
-     * Возвращает наибольшее число из двух.
+     * Overloading method max - Возвращает наибольшее число из двух.
      * @param first первое число.
      * @param second второе число.
      * @return результат.
      */
     public int max(int first, int second) {
         this.result = first < second ? second : first ;
-        System.out.println("Максимальное из двух чисел "+ first+ " & " + second + " ---> " + this.result);
         return this.result;
     }
 
+    /**
+     * Overloading method max - Возвращает наибольшее число из трех.
+     * @param first первое число.
+     * @param second второе число.
+     * @param third третье число.
+     * @return результат.
+     */
 
+    public int max(int first, int second, int third){
+        int temp = this.max(first, second);
+        this.result = this.max(temp, third);
+        return this.result;
+    }
 }
