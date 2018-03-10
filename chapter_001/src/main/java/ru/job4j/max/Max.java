@@ -3,11 +3,10 @@ package ru.job4j.max;
 /**
  * Класс Max сравнение чисел.
  * @author epopova
- * @since 08.03.2018
+ * @since 10.03.2018
  * @version $Id$
  */
 public class Max {
-    private int result;
 
     /**
      * Overloading method max - Возвращает наибольшее число из двух.
@@ -16,8 +15,7 @@ public class Max {
      * @return результат.
      */
     public int max(int first, int second) {
-        this.result = first < second ? second : first ;
-        return this.result;
+        return first < second ? second : first;
     }
 
     /**
@@ -27,10 +25,7 @@ public class Max {
      * @param third третье число.
      * @return результат.
      */
-
     public int max(int first, int second, int third){
-        int temp = this.max(first, second);
-        this.result = this.max(temp, third);
-        return this.result;
+        return this.max(this.max(first, second),third);
     }
 }
