@@ -25,7 +25,7 @@ public class Max {
      * @param third третье число.
      * @return результат.
      */
-    public int max(int first, int second, int third){
-        return this.max(this.max(first, second),third);
+    public int max(int first, int second, int third) {
+        return this.max(this.max(first, second), third);
     }
 }

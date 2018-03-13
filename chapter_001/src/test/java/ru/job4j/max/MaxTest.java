@@ -21,10 +21,6 @@ public class MaxTest {
         Max maxim = new Max();
         result = maxim.max(first, second);
         assertThat(result, is(expected));
-
-        System.out.println("test whenFirstLessSecond  ");
-        System.out.println(first + ", " + second);
-        System.out.println("максимальное число = " + result);
     }
 
     @Test
@@ -36,10 +32,6 @@ public class MaxTest {
         Max maxim = new Max();
         result =  maxim.max(first, second);
         assertThat(result, is(expected));
-
-        System.out.println("test whenSecondLessFirs ");
-        System.out.println(first + ", " + second);
-        System.out.println("максимальное число = " + result);
     }
 
     @Test
@@ -51,10 +43,6 @@ public class MaxTest {
         Max maxim = new Max();
         result =  maxim.max(first, second);
         assertThat(result, is(expected));
-
-        System.out.println("test whenSecondNoLessFirst");
-        System.out.println(first + ", " + second);
-        System.out.println("максимальное число = " + result);
     }
 
     @Test
@@ -67,10 +55,6 @@ public class MaxTest {
         Max maxim = new Max();
         result = maxim.max(first, second, third);
         assertThat(result, is(expected));
-
-        System.out.println("test whenFirstLessSecondAndThird ");
-        System.out.println(first + ", " + second + ", " + third );
-        System.out.println("максимальное число = " + result);
     }
 
     @Test
@@ -83,10 +67,6 @@ public class MaxTest {
         Max maxim = new Max();
         result =  maxim.max(first, second, third);
         assertThat(result, is(expected));
-
-        System.out.println("test whenSecondLessFirstAndThird");
-        System.out.println(first + ", " + second + ", " + third );
-        System.out.println("максимальное число = " + result);
     }
 
     @Test
@@ -99,9 +79,5 @@ public class MaxTest {
         Max maxim = new Max();
         result =  maxim.max(first, second, third);
         assertThat(result, is(expected));
-
-        System.out.println("test whenSecondNoLessFirstAndThird");
-        System.out.println(first + ", " + second + ", " + third );
-        System.out.println("максимальное число = " + result);
     }
 }

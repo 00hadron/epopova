@@ -1,11 +1,11 @@
 package ru.job4j.condition;
+
 /**
  * Класс Triangle строит треульник и вычисляет его площадь.
  * @author epopova
  * @since 10.03.2018
  * @version $Id$
  */
-
 public class Triangle {
     private Point a;
     private Point b;
@@ -14,7 +14,7 @@ public class Triangle {
     /**
      * Конструктор для инициализации точек.
      */
-    public Triangle(Point a, Point b, Point c){
+    public Triangle(Point a, Point b, Point c) {
         this.a = a;
         this.b = b;
         this.c = c;
@@ -33,12 +33,7 @@ public class Triangle {
      * @return полуперимент.
      */
     public double period(double ab, double ac, double bc) {
-        double p = (ab + ac + bc) / 2;
-        System.out.println("ab = " + ab);
-        System.out.println("ac = " + ac);
-        System.out.println("bc = " + bc);
-        System.out.println("p = " + p);
-        return  p;
+        return  (ab + ac + bc) / 2;
     }
 
     /**
@@ -52,10 +47,9 @@ public class Triangle {
         double ac = this.a.distanceTo(this.c);
         double bc = this.b.distanceTo(this.c);
         double p = this.period(ab, ac, bc);
-
-        if (this.exist(ab, ac, bc)) rsl = Math.sqrt(p * (p - ab) * (p - ac) * (p - bc));
-
-        System.out.println("rsl = " + rsl);
+        if (this.exist(ab, ac, bc)) {
+            rsl = Math.sqrt(p * (p - ab) * (p - ac) * (p - bc));
+        }
         return rsl;
     }
 
@@ -68,7 +62,11 @@ public class Triangle {
      * @return false или true.
      */
     private boolean exist(double ab, double ac, double bc) {
-        return ((ab >= (ac + bc))||(ac >= (ab + bc))||(bc >= (ab + ac)))? false:true;
+        boolean result = true;
+        if ((ab >= (ac + bc)) || (ac >= (ab + bc)) || (bc >= (ab + ac))) {
+            result = false;
+        }
+        return result;
     }
 }
 

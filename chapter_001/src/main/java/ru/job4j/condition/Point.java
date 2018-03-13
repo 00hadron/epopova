@@ -26,29 +26,20 @@ public class Point {
 	 * this неявный параметр точка А.
 	 * @return result.
 	 */
-	public double distanceTo (Point that){
+	public double distanceTo(Point that) {
 		Point a = this;
 		Point b = that;
 		double result;
-		result = Math.sqrt(Math.pow(this.x-that.x, 2)+Math.pow(this.y-that.y, 2));
+		result = Math.sqrt(Math.pow(this.x - that.x, 2) + Math.pow(this.y - that.y, 2));
 		return result;
 	}
 
 	/**
 	 * Main метод.
 	 */
-	public static void main (String[] args) {
-		Point a = new Point(0,1);
-		Point b = new Point(2,5);
+	public static void main(String[] args) {
+		Point a = new Point(0, 1);
+		Point b = new Point(2, 5);
 		double result = a.distanceTo(b);
-
-		System.out.println("x1 = " + a.x);
-		System.out.println("y1 = " + a.y);
-		System.out.println("x2 = " + b.x);
-		System.out.println("y2 = " + b.y);
-		System.out.println("Расстояние между двумя точками  = " + result);
-
-
 	}
-
 }

@@ -1,7 +1,7 @@
 package ru.job4j.calculator;
 
 /**
- * Корвертор валюты.
+ * Корвертер валюты.
  */
 public class Converter {
     private int result;
@@ -19,7 +19,7 @@ public class Converter {
      * @param value рубли, dollarRate курс доллара.
      */
     public void rubleToDollar(int value, int dollarRate) {
-       this.result = value / dollarRate;
+        this.result = value / dollarRate;
     }
 
     /**
