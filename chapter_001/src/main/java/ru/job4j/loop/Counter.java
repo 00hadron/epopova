@@ -15,22 +15,19 @@ public class Counter {
      * @param finish конец диапазона
      * @return sym сумма четных элементов массива
      */
-    public int add(int start, int finish){
+    public int add(int start, int finish) {
         int totalElement = 0;
         int sym = 0;
-
-        for (int temp = start; temp <= finish; temp++) totalElement++;
-        System.out.println("Количество всех элементов = " + totalElement);
-
-        System.out.println("Заполнение массива: ");
+        for (int temp = start; temp <= finish; temp++) {
+            totalElement++;
+        }
         int[] array  = new int[totalElement];
         for (int element : array) {
             array[element] = start++;
-            if (array[element]%2 == 0) sym = sym + array[element];
-            System.out.println( array[element]);
+            if (array[element] % 2 == 0) {
+                sym = sym + array[element];
+            }
         }
-
-        System.out.println("Сумма четных чисел = " + sym);
         return sym;
     }
 }
