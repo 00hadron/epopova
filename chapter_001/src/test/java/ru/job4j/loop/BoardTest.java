@@ -8,7 +8,6 @@ public class BoardTest {
 
     @Test
     public void when3x3() {
-        System.out.println("test 3x3");
         Board board = new Board();
         String rsl = board.paint(3, 3);
         String ln = System.lineSeparator();
@@ -17,7 +16,6 @@ public class BoardTest {
 
     @Test
     public void when5x4() {
-        System.out.println("test 5x4");
         Board board = new Board();
         String rsl = board.paint(5, 4);
         String ln = System.lineSeparator();

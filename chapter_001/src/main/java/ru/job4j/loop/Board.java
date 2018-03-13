@@ -10,20 +10,24 @@ public class Board {
 
     /**
      * Рисует шахматную доску.
-     * @param width ширина доски.
+     *
+     * @param width  ширина доски.
      * @param height высота доски.
      * @return псевдографика.
      */
     public String paint(int width, int height) {
         StringBuilder screen = new StringBuilder();
         String ln = System.lineSeparator();
-        for (int i = 0; i < height; i++ ) {
-            for (int j = 0; j < width; j++ ) {
-                screen = (i+j) % 2 == 0? screen.append("X") : screen.append(" ");
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                if ((i + j) % 2 == 0) {
+                    screen.append("X");
+                } else {
+                    screen.append(" ");
+                }
             }
             screen.append(ln);
         }
-        System.out.println(screen);
         return screen.toString();
     }
 }
