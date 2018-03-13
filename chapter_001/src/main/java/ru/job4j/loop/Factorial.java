@@ -13,9 +13,11 @@ public class Factorial {
      * @param n число.
      * @return f факториал числа.
      */
-    public int calc(int n){
-        int f = 1;
-        for (int i = 2; i <= n ; i++) f *= i;
-        return f;
+    public int calc(int n) {
+        int value = 1;
+        for (int count = 2; count <= n; count++) {
+            value *= count;
+        }
+        return value;
     }
 }
