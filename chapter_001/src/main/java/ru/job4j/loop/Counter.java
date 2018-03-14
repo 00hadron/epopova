@@ -16,17 +16,15 @@ public class Counter {
      * @return sym сумма четных элементов массива
      */
     public int add(int start, int finish) {
-        int totalElement = 0;
         int sym = 0;
-        for (int temp = start; temp <= finish; temp++) {
-            totalElement++;
-        }
-        int[] array  = new int[totalElement];
-        for (int element : array) {
-            array[element] = start++;
+        int[] array  = new int[finish - start + 1];
+        for (int element = 0; element != array.length; element++) {
+            int temp = start;
+            array[element] = temp;
             if (array[element] % 2 == 0) {
-                sym = sym + array[element];
+                sym += temp;
             }
+            start++;
         }
         return sym;
     }
