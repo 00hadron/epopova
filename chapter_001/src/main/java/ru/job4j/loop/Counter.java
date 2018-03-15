@@ -13,18 +13,14 @@ public class Counter {
      *  сумму четныx чисел в диапазоне от start до finish
      * @param start начало диапазона
      * @param finish конец диапазона
-     * @return sym сумма четных элементов массива
+     * @return sym сумма четных элементов
      */
     public int add(int start, int finish) {
         int sym = 0;
-        int[] array  = new int[finish - start + 1];
-        for (int element = 0; element <= finish; element++) {
-            int temp = start;
-            array[element] = temp;
-            if (array[element] % 2 == 0) {
-                sym += temp;
+        for (int index = start; index <= finish; index++) {
+            if (index % 2 == 0) {
+                sym += index;
             }
-            start++;
         }
         return sym;
     }
