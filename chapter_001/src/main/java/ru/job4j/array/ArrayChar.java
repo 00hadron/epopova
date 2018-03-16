@@ -25,12 +25,15 @@ public class ArrayChar {
      * @return если слово начинаеться с префикса
      */
     public boolean startWith(String prefix) {
-        boolean result = true;
+        boolean flag = true;
         char[] arrayPrefix = prefix.toCharArray();
         char[] arrayShortCopy = Arrays.copyOf(this.data, arrayPrefix.length);
-        if (!Arrays.equals(arrayPrefix,arrayShortCopy)) {
-            result = false;
+        for (int index = 0; index < arrayPrefix.length; index++) {
+            if (arrayPrefix[index] != arrayShortCopy[index]) {
+                flag = false;
+                break;
+            }
         }
-        return result;
+        return flag;
     }
 }
