@@ -19,4 +19,25 @@ public class ArrayCharTest {
         boolean result = word.startWith("Hi");
         assertThat(result, is(false));
     }
+
+    @Test
+    public void whenOriginContainsSubThenTrue() {
+        ArrayChar word = new ArrayChar("Hello");
+        boolean result = word.contains("ll");
+        assertThat(result, is(true));
+    }
+
+    @Test
+    public void whenOriginNoContainsSubThenFalse() {
+        ArrayChar word = new ArrayChar("Hello");
+        boolean result = word.contains("xl");
+        assertThat(result, is(false));
+    }
+
+    @Test
+    public void whenOriginNoContainSubsAndMatchFirstElementThenFalse() {
+        ArrayChar word = new ArrayChar("Hello");
+        boolean result = word.contains("lx");
+        assertThat(result, is(false));
+    }
 }
