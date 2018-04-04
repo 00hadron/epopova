@@ -1,9 +1,11 @@
 package ru.job4j.array;
 
+import java.util.Arrays;
+
 /**
  * Сортировка массивов.
  * @author epopova
- * @since 15.03.2018
+ * @since 04.04.2018
  * @version $Id$
  */
 public class BubbleSort {
@@ -24,5 +26,25 @@ public class BubbleSort {
             }
         }
         return array;
+    }
+
+    /**
+     * Копирует два массива в общий массив и вызывает метод сортировки.
+     * @param arrayOne первый массив.
+     * @param arrayTwo второй массив.
+     * @return отсортированный общий массив.
+     */
+    public int[] bubbleSortTwoArray(int[] arrayOne, int[] arrayTwo) {
+        int[] arrayBoth = new int[arrayOne.length + arrayTwo.length];
+        for (int indexBoth = 0; indexBoth < arrayOne.length; indexBoth++ ) {
+            arrayBoth[indexBoth] = arrayOne[indexBoth];
+        }
+        int indexTwo = 0;
+        for (int indexBoth = arrayOne.length; indexBoth < arrayBoth.length; indexBoth++) {
+            arrayBoth[indexBoth] = arrayTwo[indexTwo];
+            indexTwo++;
+        }
+        BubbleSort bubbleSort = new BubbleSort();
+        return bubbleSort.sort(arrayBoth);
     }
 }
