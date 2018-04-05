@@ -1,4 +1,4 @@
-package ru.job4j;
+package ru.job4j.profession;
 
 /**
  * Класс Учитель наследник класса Профессия.
@@ -7,6 +7,11 @@ package ru.job4j;
  * @version $Id$
  */
 public class Teacher extends Profession {
+    private String subject;
+
+    public Teacher(String subject) {
+        this.subject = subject;
+    }
 
     /**
      * метод teach учит студента.

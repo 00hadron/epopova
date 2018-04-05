@@ -1,4 +1,4 @@
-package ru.job4j;
+package ru.job4j.profession;
 
 /**
  * Класс Доктор наследник класса Профессия.
@@ -8,11 +8,27 @@ package ru.job4j;
  */
 public class Doctor extends Profession {
 
+    private String degree;
+
+    public Doctor(String degree) {
+        this.degree = degree;
+    }
+
     /**
-     * treat метод лечит пациента.
+     * Поставить диагноз.
+     * @param patient
+     */
+    public void diagnose(Patient patient){
+
+    }
+
+    /**
+     * лечить пациента.
      * @param patient
      */
     public void treat(Patient patient){
 
     }
+
+
 }

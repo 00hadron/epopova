@@ -1,4 +1,4 @@
-package ru.job4j;
+package ru.job4j.profession;
 
 /**
  * Класс Дом.
@@ -7,5 +7,11 @@ package ru.job4j;
  * @version $Id$
  */
 public class House {
+
+    private String name;
+
+    public House(String name) {
+        this.name = name;
+    }
 
 }

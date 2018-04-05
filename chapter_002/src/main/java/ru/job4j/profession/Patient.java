@@ -1,5 +1,4 @@
-package ru.job4j;
-
+package ru.job4j.profession;
 /**
  * Класс Пациент.
  * @author epopova
@@ -7,5 +6,10 @@ package ru.job4j;
  * @version $Id$
  */
 public class Patient {
+
     private String name;
+
+    public Patient(String name) {
+        this.name = name;
+    }
 }
