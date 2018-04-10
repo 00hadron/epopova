@@ -47,25 +47,23 @@ public class ArrayChar {
     public boolean contains(String sub) {
         boolean flag = true;
         char[] arraySub = sub.toCharArray();
-        branchDo:
-        do {
-            for (int indexOrigin = 0; indexOrigin <= this.data.length - arraySub.length; indexOrigin++) {
-                char[] arrayOriginShort = Arrays.copyOfRange(this.data, indexOrigin, (indexOrigin + arraySub.length));
-                int count = 0;
-                for (int index = 0; index < arraySub.length; index++) {
-                    if (arrayOriginShort[index] != arraySub[index]) {
-                        flag = false;
-                        break;
-                    } else {
-                        count++;
-                    }
-                }
-                if (count == arraySub.length) {
-                    flag = true;
-                    break branchDo;
+        branchFor:
+        for (int indexOrigin = 0; indexOrigin <= this.data.length - arraySub.length; indexOrigin++) {
+            char[] arrayOriginShort = Arrays.copyOfRange(this.data, indexOrigin, (indexOrigin + arraySub.length));
+            int count = 0;
+            for (int index = 0; index < arraySub.length; index++) {
+                if (arrayOriginShort[index] != arraySub[index]) {
+                    flag = false;
+                    break;
+                } else {
+                    count++;
                 }
             }
-        } while (flag);
+            if (count == arraySub.length) {
+                flag = true;
+                break branchFor;
+            }
+        }
         return flag;
     }
 }
