@@ -47,4 +47,19 @@ public class BubbleSort {
         BubbleSort bubbleSort = new BubbleSort();
         return bubbleSort.sort(arrayBoth);
     }
+
+    /**
+     * Копирует два массива в общий массив, сортирует по собственным методам Java.
+     * @param arrayOne первый массив.
+     * @param arrayTwo второй массив.
+     * @return отсортированный общий массив.
+     */
+    public int[] bubbleSortTwoArrayWithJavaMethod(int[] arrayOne, int[] arrayTwo) {
+        int[] arrayBoth = new int[arrayOne.length + arrayTwo.length];
+        System.arraycopy(arrayOne, 0,arrayBoth, 0, arrayOne.length);
+        System.arraycopy(arrayTwo, 0, arrayBoth, arrayOne.length, arrayTwo.length);
+        Arrays.sort(arrayBoth);
+        return arrayBoth;
+    }
 }
+
