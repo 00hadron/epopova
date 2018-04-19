@@ -47,7 +47,6 @@ public class ArrayChar {
     public boolean contains(String sub) {
         boolean flag = true;
         char[] arraySub = sub.toCharArray();
-        branchFor:
         for (int indexOrigin = 0; indexOrigin <= this.data.length - arraySub.length; indexOrigin++) {
             char[] arrayOriginShort = Arrays.copyOfRange(this.data, indexOrigin, (indexOrigin + arraySub.length));
             int count = 0;
@@ -61,7 +60,7 @@ public class ArrayChar {
             }
             if (count == arraySub.length) {
                 flag = true;
-                break branchFor;
+                break;
             }
         }
         return flag;
