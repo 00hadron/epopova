@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
@@ -11,18 +12,20 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item items = new Item("test1","testDescription",12345L);
         tracker.add(items);
-        assertThat(tracker.findAll()[0], is(items));
+        Item result = tracker.findAll()[0];
+        Item expected = items;
+        assertThat(result, is(expected));
     }
     @Test
     public void whenFindByNameThenResult() {
         Tracker tracker = new Tracker();
         Item one = new Item("test1","testDescription",12345L);
         Item two = new Item("test2","testDescription2",1234L);
-
         tracker.add(one);
         tracker.add(two);
-        tracker.findByName("test2");
-        assertThat(two.getName() , is("test2"));
+        Item[] result = tracker.findByName("test2");
+        Item[] expected = {two};
+        assertThat(result , is(expected));
     }
 
     @Test
@@ -30,10 +33,13 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item one = new Item("test2","testDescription",12345L);
         Item two = new Item("test2","testDescription2",1234L);
+        Item three = new Item("test3","testDescription3",12346L);
         tracker.add(one);
         tracker.add(two);
-        tracker.findByName("test2");
-        assertThat(two.getName() , is("test2"));
+        tracker.add(three);
+        Item[] result = tracker.findByName("test2");
+        Item[] expected = {one, two};
+        assertThat(result , is(expected));
     }
 
     @Test
@@ -43,8 +49,9 @@ public class TrackerTest {
         Item two = new Item("test2","testDescription2",1234L);
         tracker.add(one);
         tracker.add(two);
-        assertThat( tracker.findById(two.getId()) , is(two));
-
+        Item result = tracker.findById(two.getId());
+        Item expected = two;
+        assertThat( result , is(expected));
     }
 
     @Test
@@ -54,21 +61,22 @@ public class TrackerTest {
         Item two = new Item("test2","testDescription2",1234L);
         tracker.add(one);
         tracker.add(two);
+        Item[] result = tracker.findAll();
         Item[] expected = {one, two};
-        assertArrayEquals( expected, tracker.findAll());
+        assertThat(result, is(expected));
     }
-
 
     @Test
     public void whenReplaceNameThenReturnNewName() {
         Tracker tracker = new Tracker();
         Item previous = new Item("test1","testDescription",123L);
-        tracker.add(previous);
         Item next = new Item("test2","testDescription2",1234L);
+        tracker.add(previous);
         tracker.add(next);
-        String name = previous.getName();
-        tracker.replace(previous.getId(), next);
-        assertThat(name, is("test2"));
+        String id = previous.getId();
+        tracker.replace(id, next);
+        Item result = tracker.findById(id);
+        assertThat(result.getName(), is(next.getName()));
     }
 
     @Test
@@ -76,13 +84,13 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item one = new Item("test1","testDescription",12345L);
         Item two = new Item("test2","testDescription2",1234L);
+        Item three = new Item("test3","testDescription3",12346L);
         tracker.add(one);
         tracker.add(two);
-        tracker.delete(one.getId());
-        Item[] expected = {two};
-        assertArrayEquals(expected, tracker.findAll());
+        tracker.add(three);
+        tracker.delete(two.getId());
+        Item[] expected = {one, three};
+        Item[] result = tracker.findAll();
+        assertThat(result, is(expected));
     }
-
 }
-
-

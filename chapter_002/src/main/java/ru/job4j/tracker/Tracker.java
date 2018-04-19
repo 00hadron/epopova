@@ -12,6 +12,7 @@ public class Tracker {
     private final Item[] items = new Item[SIZE];
     private int position = 0;
     private static final Random RN = new Random();
+    private static final int SHIFT = 1;
 
     /**
      * Добавление заявки в хранилище.
@@ -28,14 +29,10 @@ public class Tracker {
      * @param id заменяемого элемента массива.
      * @param item - эти данные перезаписать в заменяемый элемент массива.
      * */
-
     public void replace(String id, Item item) {
-       Item find = findById(id);
-        for (int index = 0; index != SIZE; index++)
-            if (items[this.position] != null && items[this.position].equals(find)) {
-                items[this.position] = item;
-                break;
-            }
+        Item find = findById(id);
+        item.setId(find.getId());
+        delete(find.getId());
     }
 
     /**
@@ -43,9 +40,14 @@ public class Tracker {
      * @param id
      */
     public void delete(String id) {
-         final int SHIFT = 1;
-        Item[] result = Arrays.copyOf(items, SHIFT);
-        System.arraycopy(this.items, SHIFT, this.items,0 ,this.items.length - SHIFT);
+        int removeInx = SIZE;
+        for (int index = 0; index != items.length; index++) {
+            if (findById(id).equals(items[index])) {
+                removeInx = index;
+                break;
+            }
+        }
+        System.arraycopy(this.items, removeInx + SHIFT, this.items, removeInx ,this.items.length - removeInx - SHIFT);
     }
 
     /**
@@ -53,23 +55,14 @@ public class Tracker {
      * @return
      */
     public Item[] findAll() {
-        int count = 0;
-        for (Item item : items) {
-            if (item != null) {
-                count++;
+        int cut = 1;
+        for (int index = 0; index != this.items.length; index++) {
+            if ( items[index] == null) {
+                cut = index;
+                break;
             }
         }
-        Item[] result = new Item[count];
-        int index = 0;
-        do {
-            for (this.position = 0; this.position != items.length; this.position++) {
-                if (this.items[this.position] != null) {
-                    result[index] = items[this.position];
-                    index++;
-                }
-            }
-        } while (index != count);
-        return result;
+        return Arrays.copyOf(items, cut);
     }
 
     /**
@@ -77,7 +70,7 @@ public class Tracker {
      * @param name
      * @return
      */
-    protected Item[] findByName(String name) {
+    public Item[] findByName(String name) {
         int count = 0;
         for (Item item : this.items) {
             if (item != null && item.getName().equals(name) ) {
@@ -85,11 +78,11 @@ public class Tracker {
             }
         }
         Item[] result = new Item[count];
-        for (this.position = 0; this.position != this.items.length; this.position++) {
-            for (int index = 0; index != count; index++) {
-                if (this.items[index] != null && this.items[index].getName().equals(name)) {
-                    result[index] = items[this.position];
-                }
+        int index = 0;
+        for (Item element : items) {
+            if (element != null && element.getName().equals(name)) {
+                result[index] = element;
+                index++;
             }
         }
         return result;
@@ -100,7 +93,7 @@ public class Tracker {
      * @param id
      * @return
      */
-    protected Item findById(String id) {
+    public Item findById(String id) {
         Item result = null;
         for (Item element : items) {
             if (element != null && element.getId().equals(id)) {

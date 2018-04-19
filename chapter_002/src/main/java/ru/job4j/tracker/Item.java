@@ -11,7 +11,8 @@ public class Item {
         this.name = name;
         this.desc = desc;
         this.created = created;
-       this.comments = comments;
+        this.comments = comments;
+
     }
     public Item(String name, String desc, long created) {
         this.name = name;
@@ -19,7 +20,13 @@ public class Item {
         this.created = created;
     }
 
-    public Item(String test1, String testDescription, String desc, long created, String comment1) {
+    public Item(String name, String desc) {
+        this.name = name;
+        this.desc = desc;
+    }
+
+    public Item(String name) {
+        this.name = name;
     }
 
     public String getId() {
@@ -34,6 +41,10 @@ public class Item {
         return this.name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getDesc() {
         return this.desc;
     }
@@ -45,6 +56,4 @@ public class Item {
     public String[] getComments() {
         return this.comments;
     }
-
-
 }
