@@ -1,15 +1,19 @@
 package ru.job4j.start;
 import ru.job4j.tracker.*;
 
+/**
+ * Класс StartUI для запуска программы и опроса пользователя.
+ * @author epopova
+ */
 public class StartUI {
     private static final String ADD = "0";
     private static final String SHOW = "1";
     private static final String EDIT = "2";
     private static final String DELETE = "3";
-    private static final String FINDbyID = "4";
-    private static final String FINDbyNAME = "5";
+    private static final String FIND_BY_ID = "4";
+    private static final String FIND_BY_NAME = "5";
     private static final String EXIT = "6";
-    private final ConsoleInput input;
+    private final Input input;
     private final Tracker tracker;
 
     /**
@@ -17,7 +21,7 @@ public class StartUI {
      * @param input - получение данных от пользователя.
      * @param tracker - хранение заявок.
      */
-    public StartUI(ConsoleInput input, Tracker tracker) {
+    public StartUI(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
     }
@@ -27,7 +31,7 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-        ConsoleInput input = new ConsoleInput();
+        Input input = new ConsoleInput();
         Tracker tracker = new Tracker();
         StartUI startUI = new StartUI(input, tracker);
         startUI.init();
@@ -36,7 +40,7 @@ public class StartUI {
     /**
      * опрос пользователя.
      */
-    private void init() {
+    protected void init() {
         boolean exit = false;
         while (!exit) {
             this.showMenu();
@@ -45,15 +49,15 @@ public class StartUI {
                 this.createItem();
             } else if (SHOW.equals(answer)) {
                 this.show();
-            }else if (EDIT.equals(answer)) {
+            } else if (EDIT.equals(answer)) {
                 this.edit();
             } else if (DELETE.equals(answer)) {
                 this.delete();
-            } else if (FINDbyID.equals(answer)) {
+            } else if (FIND_BY_ID.equals(answer)) {
                 this.findByID();
-            } else if (FINDbyNAME.equals(answer)) {
+            } else if (FIND_BY_NAME.equals(answer)) {
                 this.findByName();
-            }else if (EXIT.equals(answer)) {
+            } else if (EXIT.equals(answer)) {
                 exit = true;
             }
         }
@@ -77,7 +81,7 @@ public class StartUI {
     private void show() {
         System.out.println("--- Сейчас покажу все items... ---");
         int number = 1;
-        for (Item items : this.tracker.findAll() ) {
+        for (Item items : this.tracker.findAll()) {
             System.out.println(number + ". name " + items.getName() + "; desc " + items.getDesc());
             number++;
         }
@@ -161,14 +165,14 @@ public class StartUI {
      */
     private void showMenu() {
         String text =
-                "        Menu\n " +
-                        "     0. Add new Item\n" +
-                        "     1. Show all items\n" +
-                        "     2. Edit item\n" +
-                        "     3. Delete item\n" +
-                        "     4. Find item by Id\n" +
-                        "     5. Find items by name\n" +
-                        "     6. Exit Program\n";
+                "        Menu\n "
+                        + "     0. Add new Item\n"
+                        + "     1. Show all items\n"
+                        + "     2. Edit item\n"
+                        + "     3. Delete item\n"
+                        + "     4. Find item by Id\n"
+                        + "     5. Find items by name\n"
+                        + "     6. Exit Program\n";
         System.out.println(text);
     }
 }
