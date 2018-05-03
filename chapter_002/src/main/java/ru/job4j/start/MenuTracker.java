@@ -45,17 +45,38 @@ class EditItem implements UserAction {
 
 public class MenuTracker {
     private UserAction[] action = new UserAction[7];
+    private int[] range = new int[action.length];
     private Tracker tracker;
     private Input input;
+
+
 
     /**
      * Конструктор для инициализации полей класса.
      * @param input
      * @param tracker
      */
+
     public MenuTracker(Input input, Tracker tracker) {
         this.tracker = tracker;
         this.input = input;
+    }
+
+    /**
+     * Геттер поля диапазон допустимых ответов.
+     * @return массив допустимых ответов.
+     */
+    public int[] getRange() {
+        return this.range;
+    }
+
+    /**
+     * Заполняет массив допустимых ответов.
+     */
+    private void fillRange() {
+        for (int index = 0; index != range.length; index++) {
+            this.range[index] = index;
+        }
     }
 
     /**
@@ -70,6 +91,7 @@ public class MenuTracker {
         this.action[4] = new FindByIdItem();
         this.action[5] = new FindByNameItem();
         this.action[6] = new ExitProgram();
+        this.fillRange();
     }
 
     /**

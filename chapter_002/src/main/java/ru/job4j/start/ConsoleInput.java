@@ -17,4 +17,28 @@ public class ConsoleInput implements Input {
         System.out.println(question);
         return scanner.nextLine();
     }
+
+    /**
+     * Проверяет, что ответ пользователя в допустимом диапазоне.
+     * Иначе выкидывает исключение.
+     * @param question вопрос пользователю.
+     * @param range диапазон значений
+     * @return key
+     */
+    @Override
+    public int ask(String question, int[] range) {
+        int key = Integer.valueOf(this.ask(question));
+        boolean flag = false;
+        for (int value : range) {
+            if (value == key) {
+                flag = true;
+                break;
+            }
+        }
+        if (flag) {
+            return key;
+        } else {
+            throw new MenuOutException("вне диапазона меню!");
+        }
+    }
 }

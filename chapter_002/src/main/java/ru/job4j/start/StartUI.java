@@ -19,12 +19,13 @@ public class StartUI {
         this.tracker = tracker;
     }
 
+
     /**
      * main.
      * @param args
      */
     public static void main(String[] args) {
-        Input input = new ConsoleInput();
+        Input input = new ValidateInput();
         Tracker tracker = new Tracker();
         StartUI startUI = new StartUI(input, tracker);
         startUI.init();
@@ -40,8 +41,7 @@ public class StartUI {
         String answer;
         do {
             menu.show();
-            int key = Integer.valueOf(input.ask("введите пункт меню (от 0 до 6) : "));
-            menu.select(key);
+            menu.select(input.ask("введите пункт меню (от 0 до 6) : ", menu.getRange()));
             answer = this.input.ask("exit? (y): ");
         } while (!"y".equals(answer));
     }
