@@ -24,7 +24,19 @@ public class StubInput implements Input {
 
     @Override
     public int ask(String question, int[] range) {
-        return -1;
+        int key = Integer.valueOf(this.ask(question));
+        boolean flag = false;
+        for (int value : range) {
+            if (value == key) {
+                flag = true;
+                break;
+            }
+        }
+        if (flag) {
+            return key;
+        } else {
+            throw new UnsupportedOperationException("no support operation!");
+        }
     }
 }
 

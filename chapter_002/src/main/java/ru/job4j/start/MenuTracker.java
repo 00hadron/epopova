@@ -49,8 +49,6 @@ public class MenuTracker {
     private Tracker tracker;
     private Input input;
 
-
-
     /**
      * Конструктор для инициализации полей класса.
      * @param input
@@ -97,9 +95,9 @@ public class MenuTracker {
     /**
      * Метод select - запускает дейстие по ключу.
      * @param key
-     * @param range
+     *
      */
-    public void select(int key, int[] range) {
+    public void select(int key) {
         this.action[key].execute(this.input, this.tracker);
     }
 

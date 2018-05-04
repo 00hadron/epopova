@@ -9,6 +9,8 @@ public class StartUI {
     private final Input input;
     private final Tracker tracker;
     private boolean exit = false;
+    private Integer answer;
+    private static final Integer EXIT = 6;
 
     /**
      * Конструкторы инициализации полей класса.
@@ -22,7 +24,6 @@ public class StartUI {
     public void setExit(boolean flag) {
         this.exit = flag;
     }
-
 
     /**
      * main.
@@ -44,15 +45,22 @@ public class StartUI {
         menu.fillActions();
         do {
             menu.show();
-            String answer = input.ask("введите пункт меню (от 0 до 6) : " );
-            int key = Integer.valueOf(answer);
-            menu.select(key, menu.getRange());
-            if ("6".equals(answer)) {
-                answer = this.input.ask("exit? (y): ");
-                if ("y".equals(answer)) {
-                setExit(true);}
-            }
+            this.answer = this.input.ask("введите пункт меню (от 0 до 6) : ", menu.getRange());
+            menu.select(this.answer);
+            this.confirm();
         } while (!this.exit);
     }
-}
 
+    /**
+     * Переспрашивает пользователя, точно ли надо выйти.
+     */
+    private void confirm() {
+
+        if (this.EXIT.equals(this.answer)) {
+            String answer = this.input.ask("exit? (y): ");
+            if ("y".equals(answer)) {
+                setExit(true);
+            }
+        }
+    }
+}
