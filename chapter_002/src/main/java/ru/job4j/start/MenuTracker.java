@@ -97,8 +97,9 @@ public class MenuTracker {
     /**
      * Метод select - запускает дейстие по ключу.
      * @param key
+     * @param range
      */
-    public void select(int key) {
+    public void select(int key, int[] range) {
         this.action[key].execute(this.input, this.tracker);
     }
 

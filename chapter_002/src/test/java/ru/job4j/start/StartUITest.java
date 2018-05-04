@@ -22,7 +22,7 @@ public class StartUITest {
 
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
-        String[] answers = {"0", "test name", "desc", "6"};
+        String[] answers = {"0", "test name", "desc", "6","y"};
         Input input = new StubInput(answers);
         StartUI startUI = new StartUI(input, this.tracker);
         startUI.init();
@@ -34,7 +34,7 @@ public class StartUITest {
     public void whenUserUpdateThenTrackerHasUpdatedValue() {
         Item item = new Item("pre name");
         this.tracker.add(item);
-        String[] answer = {"2", item.getName(), "test name", "desc", "6"};
+        String[] answer = {"2", item.getName(), "test name", "desc", "6", "y"};
         Input input = new StubInput(answer);
         StartUI startUI = new StartUI(input, this.tracker);
         startUI.init();
@@ -46,7 +46,7 @@ public class StartUITest {
     public void whenUserDeleteThenTrackerHasDeletedValue() {
         Item item = new Item("name");
         this.tracker.add(item);
-        String[] answer = {"3", item.getName(), "6"};
+        String[] answer = {"3", item.getName(), "6", "y"};
         Input input = new StubInput(answer);
         StartUI startUI = new StartUI(input, this.tracker);
         startUI.init();
@@ -62,7 +62,7 @@ public class StartUITest {
         this.tracker.add(one);
         this.tracker.add(two);
         this.tracker.add(three);
-        String[] answer = {"4", one.getId(), "6"};
+        String[] answer = {"4", one.getId(), "6", "y"};
         Input input = new StubInput(answer);
         StartUI startUI = new StartUI(input, this.tracker);
         startUI.init();
@@ -78,7 +78,7 @@ public class StartUITest {
         this.tracker.add(one);
         this.tracker.add(two);
         this.tracker.add(three);
-        String[] answer = {"5", one.getName(), "6"};
+        String[] answer = {"5", one.getName(), "6", "y"};
         Input input = new StubInput(answer);
         StartUI startUI = new StartUI(input, this.tracker);
         startUI.init();
@@ -95,33 +95,30 @@ public class StartUITest {
         this.tracker.add(one);
         this.tracker.add(two);
         this.tracker.add(three);
-        String[] answer = {"1", "6"};
+        String[] answer = {"1", "6", "y"};
         Input input = new StubInput(answer);
         StartUI startUI = new StartUI(input, this.tracker);
         startUI.init();
         String result = new String(out.toByteArray());
-        String expected =
-                "        Menu\n "
-                        + "     0. Add new Item\n"
-                        + "     1. Show all items\n"
-                        + "     2. Edit item\n"
-                        + "     3. Delete item\n"
-                        + "     4. Find item by Id\n"
-                        + "     5. Find items by name\n"
-                        + "     6. Exit Program\n\r\n"
-                        + ""
-                + "--- Сейчас покажу все items... ---\r\n"
-                + "1. name one; desc null\r\n"
-                + "2. name two; desc null\r\n"
-                + "3. name three; desc null\r\n"
-                + "        Menu\n "
-                + "     0. Add new Item\n"
-                + "     1. Show all items\n"
-                + "     2. Edit item\n"
-                + "     3. Delete item\n"
-                + "     4. Find item by Id\n"
-                + "     5. Find items by name\n"
-                + "     6. Exit Program\n\r\n";
+        String expected = "0. Add new Item\r\n"
+                        + "1. Show all items\r\n"
+                        + "2. Edit item\r\n"
+                        + "3. Delete item\r\n"
+                        + "4. Find item by Id\r\n"
+                        + "5. Find items by name\r\n"
+                        + "6. Exit program\r\n"
+                        + "--- Сейчас покажу все items... ---\r\n"
+                        + "1. name one; desc null\r\n"
+                        + "2. name two; desc null\r\n"
+                        + "3. name three; desc null\r\n"
+                        + "0. Add new Item\r\n"
+                        + "1. Show all items\r\n"
+                        + "2. Edit item\r\n"
+                        + "3. Delete item\r\n"
+                        + "4. Find item by Id\r\n"
+                        + "5. Find items by name\r\n"
+                        + "6. Exit program\r\n"
+                        +"--- Выход из программы ---\r\n";
         assertThat(result, is(expected));
         this.backOutput();
     }
@@ -129,20 +126,20 @@ public class StartUITest {
     @Test
     public void whenUserChooseExitThenExitOnScreen() {
         this.loadOutput();
-        String[] answer = {"6"};
+        String[] answer = {"6", "y"};
         Input input = new StubInput(answer);
         StartUI startUI = new StartUI(input, this.tracker);
         startUI.init();
         String result = new String(out.toByteArray());
         String expected =
-                "        Menu\n "
-                        + "     0. Add new Item\n"
-                        + "     1. Show all items\n"
-                        + "     2. Edit item\n"
-                        + "     3. Delete item\n"
-                        + "     4. Find item by Id\n"
-                        + "     5. Find items by name\n"
-                        + "     6. Exit Program\n\r\n";
+                         "0. Add new Item\r\n"
+                        + "1. Show all items\r\n"
+                        + "2. Edit item\r\n"
+                        + "3. Delete item\r\n"
+                        + "4. Find item by Id\r\n"
+                        + "5. Find items by name\r\n"
+                        + "6. Exit program\r\n"
+                +"--- Выход из программы ---\r\n";
         assertThat(result, is(expected));
         this.backOutput();
     }

@@ -8,6 +8,7 @@ import ru.job4j.tracker.*;
 public class StartUI {
     private final Input input;
     private final Tracker tracker;
+    private boolean exit = false;
 
     /**
      * Конструкторы инициализации полей класса.
@@ -17,6 +18,9 @@ public class StartUI {
     public StartUI(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
+    }
+    public void setExit(boolean flag) {
+        this.exit = flag;
     }
 
 
@@ -38,12 +42,17 @@ public class StartUI {
 
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
         menu.fillActions();
-        String answer;
         do {
             menu.show();
-            menu.select(input.ask("введите пункт меню (от 0 до 6) : ", menu.getRange()));
-            answer = this.input.ask("exit? (y): ");
-        } while (!"y".equals(answer));
+            String answer = input.ask("введите пункт меню (от 0 до 6) : " );
+            int key = Integer.valueOf(answer);
+            menu.select(key, menu.getRange());
+            if ("6".equals(answer)) {
+                answer = this.input.ask("exit? (y): ");
+                if ("y".equals(answer)) {
+                setExit(true);}
+            }
+        } while (!this.exit);
     }
 }
 
