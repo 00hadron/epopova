@@ -16,7 +16,7 @@ public abstract class InputDecorator implements Input {
     }
 
     public int ask(String question, int[] range) {
-        return decoratedInput.ask(question, range);
+        return this.decoratedInput.ask(question, range);
     }
 }
 

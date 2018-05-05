@@ -30,9 +30,9 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-        Input console = new ConsoleInput();
-        Input input = new ValidateInput(console);
+
         Tracker tracker = new Tracker();
+        Input input = new ValidateInput(new ConsoleInput());
         StartUI startUI = new StartUI(input, tracker);
         startUI.init();
     }

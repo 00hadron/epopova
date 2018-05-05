@@ -1,11 +1,14 @@
 package ru.job4j.start;
 
+import java.util.Scanner;
+
 /**
  * Класс ValidateInput обработка исключительных ситуаций.
  * concrete decorator class extending the InputDecorator class.
  * @author epopova
  */
 public class ValidateInput extends InputDecorator {
+    private Scanner scanner = new Scanner(System.in);
 
     public ValidateInput(final Input decoratedInput ) {
         super(decoratedInput);
@@ -34,6 +37,7 @@ public class ValidateInput extends InputDecorator {
 
     @Override
     public String ask(String question) {
-        return null;
+        System.out.println(question);
+        return scanner.nextLine();
     }
 }
