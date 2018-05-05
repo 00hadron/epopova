@@ -2,10 +2,14 @@ package ru.job4j.start;
 
 /**
  * Класс ValidateInput обработка исключительных ситуаций.
+ * concrete decorator class extending the InputDecorator class.
  * @author epopova
  */
-public class ValidateInput extends ConsoleInput {
+public class ValidateInput extends InputDecorator {
 
+    public ValidateInput(final Input decoratedInput ) {
+        super(decoratedInput);
+    }
     /**
      * Обрабатывает исключения.
      */
@@ -15,7 +19,7 @@ public class ValidateInput extends ConsoleInput {
         int value = -1;
         do {
             try {
-                value = super.ask(question, range);
+                value = this.decoratedInput.ask(question, range);
                 invalid = false;
             }catch (MenuOutException moe) {
                 System.out.println("выберите ключ из меню");
@@ -26,5 +30,10 @@ public class ValidateInput extends ConsoleInput {
             }
         } while (invalid);
         return value;
+    }
+
+    @Override
+    public String ask(String question) {
+        return null;
     }
 }

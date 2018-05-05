@@ -143,4 +143,18 @@ public class StartUITest {
         assertThat(result, is(expected));
         this.backOutput();
     }
+
+    @Test
+    public void whenInvalidInput() {
+        this.loadOutput();
+        String[] answer = {"invalid", "1"};
+        int[] range = {1};
+        Input stub = new StubInput(answer);
+        Input input = new ValidateInput(stub);
+        input.ask("enter", range);
+        String result = this.out.toString();
+        String expected = "введите корректные данные!\r\n";
+        assertThat(result, is(expected));
+        this.backOutput();
+    }
 }
