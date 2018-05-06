@@ -10,9 +10,10 @@ import java.util.Scanner;
 public class ValidateInput extends InputDecorator {
     private Scanner scanner = new Scanner(System.in);
 
-    public ValidateInput(final Input decoratedInput ) {
+    public ValidateInput(final Input decoratedInput) {
         super(decoratedInput);
     }
+
     /**
      * Обрабатывает исключения.
      */
@@ -24,11 +25,9 @@ public class ValidateInput extends InputDecorator {
             try {
                 value = this.decoratedInput.ask(question, range);
                 invalid = false;
-            }catch (MenuOutException moe) {
+            } catch (MenuOutException moe) {
                 System.out.println("выберите ключ из меню");
-            }
-
-            catch (NumberFormatException nfe) {
+            } catch (NumberFormatException nfe) {
                 System.out.println("введите корректные данные!");
             }
         } while (invalid);
