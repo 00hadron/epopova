@@ -35,10 +35,9 @@ public class ConsoleInput implements Input {
                 break;
             }
         }
-        if (flag) {
-            return key;
-        } else {
+        if (!flag) {
             throw new MenuOutException("вне диапазона меню!");
         }
+        return key;
     }
 }

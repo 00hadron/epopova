@@ -32,11 +32,10 @@ public class StubInput implements Input {
                 break;
             }
         }
-        if (flag) {
-            return key;
-        } else {
+        if (!flag) {
             throw new UnsupportedOperationException("no support operation!");
         }
+        return key;
     }
 }
 
