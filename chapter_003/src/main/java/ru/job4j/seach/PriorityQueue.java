@@ -25,19 +25,16 @@ public class PriorityQueue {
      * @param task задача
      */
     public void put(Task task) {
-        ListIterator<Task> here = this.tasks.listIterator();
-        while (here.hasNext() ) {
-            if (here.next().getPriority() > task.getPriority()) {
-                this.tasks.add(here.previousIndex(), task);
+        int count = 0;
+        for (Task t : this.tasks) {
+            if (t.getPriority() > task.getPriority()) {
+                this.tasks.add(count, task);
                 break;
             }
-            if (!here.hasNext()) {
-                this.tasks.addLast(task);
-                break;
-            }
+            count++;
         }
-        if (this.tasks.size() == 0) {
-            this.tasks.add(task);
+        if (count == this.tasks.size()) {
+            this.tasks.addLast(task);
         }
     }
 
