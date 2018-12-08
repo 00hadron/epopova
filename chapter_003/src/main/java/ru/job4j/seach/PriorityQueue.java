@@ -28,14 +28,11 @@ public class PriorityQueue {
         int count = 0;
         for (Task t : this.tasks) {
             if (t.getPriority() > task.getPriority()) {
-                this.tasks.add(count, task);
                 break;
             }
             count++;
         }
-        if (count == this.tasks.size()) {
-            this.tasks.addLast(task);
-        }
+        this.tasks.add(count, task);
     }
 
     public Task take() {
