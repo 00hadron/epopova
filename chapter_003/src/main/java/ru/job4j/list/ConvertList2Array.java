@@ -6,7 +6,6 @@ package ru.job4j.list;
  * @version $Id$
  */
 import java.util.List;
-import java.util.ListIterator;
 
 public class ConvertList2Array {
 
@@ -18,14 +17,26 @@ public class ConvertList2Array {
             if (list.size() % rows != 0) {
                 this.cells++;
             }
-            int[][] array = new int[rows][this.cells];
-            ListIterator<Integer> here = list.listIterator();
-            for (int r = 0; r != rows; r++) {
-                for (int c = 0; c != this.cells; c++) {
-                    if (!here.hasNext()) break;
-                    array[r][c] = here.next();
+            int[][] array = new int [rows][this.cells];
+            int cell = 0;
+            int lst = 0;
+            int row = 0;
+            while (row != rows) {
+                for (int[] a : array) {
+                    if (lst == list.size()) {
+                        break;
+                    }
+                    array[row][cell] = list.get(lst);
+                    cell++;
+                    lst++;
+                    if (cell == this.cells) {
+                        break;
+                    }
                 }
-            } return array;
+                row++;
+                cell = 0;
+            }
+            return array;
         } else {
             throw new NullPointerException("Входящий список пуст!");
         }
