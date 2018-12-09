@@ -6,40 +6,22 @@ package ru.job4j.list;
  * @version $Id$
  */
 import java.util.List;
+import static java.lang.Math.ceil;
 
 public class ConvertList2Array {
-
-    private int cells;
-
     public int[][] toArray(List<Integer> list, int rows) {
-        if (list != null && rows != 0) {
-            this.cells = list.size() / rows;
-            if (list.size() % rows != 0) {
-                this.cells++;
-            }
-            int[][] array = new int [rows][this.cells];
-            int cell = 0;
-            int lst = 0;
-            int row = 0;
-            while (row != rows) {
-                for (int[] a : array) {
-                    if (lst == list.size()) {
-                        break;
-                    }
-                    array[row][cell] = list.get(lst);
-                    cell++;
-                    lst++;
-                    if (cell == this.cells) {
-                        break;
-                    }
-                }
-                row++;
+        int cells = (int) ceil((double) list.size() / rows);
+        int[][] array = new int [rows][cells];
+        int cell = 0;
+        int row = 0;
+        for (Integer lst : list) {
+            array[row][cell++] = lst;
+            if (cell == cells) {
                 cell = 0;
+                row++;
             }
-            return array;
-        } else {
-            throw new NullPointerException("Входящий список пуст!");
         }
+        return array;
     }
 }
 
