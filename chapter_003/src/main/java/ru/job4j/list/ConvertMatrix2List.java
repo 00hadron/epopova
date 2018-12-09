@@ -13,18 +13,13 @@ public class ConvertMatrix2List {
 
     public List<Integer> toList(int[][] array) {
         List<Integer> list = new ArrayList<>();
-        int row = 0;
-        int column = 0;
         for (int[] rows : array) {
-            for (int columns : rows) {
-                list.add(array[row][column]);
-                column++;
-                if (columns == rows.length) {
+            for (int element : rows) {
+                list.add(element);
+                if (element == rows.length) {
                     break;
                 }
             }
-            row++;
-            column = 0;
         }
         return list;
     }
