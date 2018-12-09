@@ -5,6 +5,7 @@ package ru.job4j.list;
  * @since 06.12.2018
  * @version $Id$
  */
+import java.util.LinkedList;
 import java.util.List;
 import static java.lang.Math.ceil;
 
@@ -22,6 +23,26 @@ public class ConvertList2Array {
             }
         }
         return array;
+    }
+
+    /**
+     * пройтись по всем элементам всех массивов в списке list и добавить их в один общий лист Integer.
+     */
+    public List<Integer> convert (List<int[]> list){
+        List<Integer> result = new LinkedList<>();
+        int count = 0;
+        for (int[] rows : list) {
+            for (int element : rows) {
+                result.add(element);
+                count++;
+                if (count == rows.length){
+                    break;
+                }
+            }
+            count = 0;
+        }
+
+        return result ;
     }
 }
 

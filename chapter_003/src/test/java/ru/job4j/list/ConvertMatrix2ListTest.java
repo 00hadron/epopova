@@ -20,4 +20,18 @@ public class ConvertMatrix2ListTest {
         List<Integer> result = list.toList(input);
         assertThat(result, is(expect));
     }
+
+    @Test
+    public void when3on3ArrayThenList6() {
+        ConvertMatrix2List list = new ConvertMatrix2List();
+        int[][] input = {
+                {3, 2, 3},
+                {1, 2, 3}
+        };
+        List<Integer> expect = Arrays.asList(
+                3, 2, 3, 1, 2, 3
+        );
+        List<Integer> result = list.toList(input);
+        assertThat(result, is(expect));
+    }
 }
