@@ -30,18 +30,11 @@ public class ConvertList2Array {
      */
     public List<Integer> convert (List<int[]> list){
         List<Integer> result = new LinkedList<>();
-        int count = 0;
         for (int[] rows : list) {
             for (int element : rows) {
                 result.add(element);
-                count++;
-                if (count == rows.length){
-                    break;
-                }
             }
-            count = 0;
         }
-
         return result ;
     }
 }
