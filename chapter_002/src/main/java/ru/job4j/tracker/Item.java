@@ -49,6 +49,10 @@ public class Item {
         return this.desc;
     }
 
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
     public long getCreated() {
         return this.created;
     }
