@@ -15,8 +15,6 @@ public class User {
         this.name = name;
         this.city = city;
     }
-    public   User () {
-    }
 
     public int getId() {
         return this.id;
@@ -28,16 +26,5 @@ public class User {
 
     public String getCity() {
         return this.city;
-    }
-}
-
-class UserTemp extends User {
-
-    private String name;
-    private String city;
-
-    public   UserTemp (String name, String city) {
-        this.name = name;
-        this.city = city;
     }
 }

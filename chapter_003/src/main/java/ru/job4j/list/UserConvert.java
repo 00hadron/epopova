@@ -19,11 +19,8 @@ public class UserConvert {
      */
     public Map<Integer, User> process(List<User> list) {
         Map<Integer, User> result = new HashMap<>();
-        int key;
         for (User user : list) {
-            User temp = new UserTemp(user.getName(), user.getCity());
-            key = user.getId();
-            result.put(key, temp);
+            result.put(user.getId(),user);
         }
         return result;
     }

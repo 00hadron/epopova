@@ -3,6 +3,7 @@ package ru.job4j.list;
 import org.junit.Test;
 import java.util.*;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class UserConvertTest {
@@ -23,17 +24,13 @@ public class UserConvertTest {
         list.add(user3);
         list.add(user4);
         Map<Integer, User> result = convert.process(list);
-
         Map<Integer, User> expected = new HashMap<Integer, User>();
-        User user1temp = new UserTemp(name, city);
-        User user2temp = new UserTemp(name, city);
-        User user3temp = new UserTemp(name, city);
-        User user4temp = new UserTemp(name, city);
-        expected.put(1, user1temp);
-        expected.put(2, user2temp);
-        expected.put(3, user3temp);
-        expected.put(4, user4temp);
+        expected.put(1, user1);
+        expected.put(2, user2);
+        expected.put(3, user3);
+        expected.put(4, user4);
         assertThat(result.keySet(), is(expected.keySet()));
+        assertEquals(result, expected);
     }
 }
 
