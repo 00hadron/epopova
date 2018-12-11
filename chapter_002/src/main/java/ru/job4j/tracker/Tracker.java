@@ -4,15 +4,14 @@ import java.util.*;
 
 /**
  * Класс хранит и обрабатывает заявки.
- * @version 0.1
- * @since 06.04.18
+ * (Все массивы заменены на List)
+ * @version 0.2
+ * @since 11.12.2018
  */
 public class Tracker {
-    private static final int SIZE = 100;
-    private final Item[] items = new Item[SIZE];
-    private int position = 0;
+
+    private List<Item> items = new ArrayList<>();
     private static final Random RN = new Random();
-    private static final int SHIFT = 1;
 
     /**
      * Добавление заявки в хранилище.
@@ -20,7 +19,7 @@ public class Tracker {
      */
     public Item add(Item item) {
         item.setId(this.generateId());
-        this.items[this.position++] = item;
+        items.add(item);
         return item;
     }
 
@@ -40,29 +39,20 @@ public class Tracker {
      * @param id
      */
     public void delete(String id) {
-        int removeInx = SIZE;
-        for (int index = 0; index != items.length; index++) {
-            if (findById(id).equals(items[index])) {
-                removeInx = index;
+        for (Item element : items) {
+            if (findById(id).equals(element)) {
+                items.remove(element);
                 break;
             }
         }
-        System.arraycopy(this.items, removeInx + SHIFT, this.items, removeInx ,this.items.length - removeInx - SHIFT);
     }
 
     /**
      * Получает список всех заявок.
      * @return
      */
-    public Item[] findAll() {
-        int cut = 1;
-        for (int index = 0; index != this.items.length; index++) {
-            if ( items[index] == null) {
-                cut = index;
-                break;
-            }
-        }
-        return Arrays.copyOf(items, cut);
+    public List<Item> findAll() {
+        return this.items;
     }
 
     /**
@@ -70,19 +60,11 @@ public class Tracker {
      * @param name
      * @return
      */
-    public Item[] findByName(String name) {
-        int count = 0;
-        for (Item item : this.items) {
-            if (item != null && item.getName().equals(name) ) {
-                count++;
-            }
-        }
-        Item[] result = new Item[count];
-        int index = 0;
+    public List<Item> findByName(String name) {
+        List<Item> result = new ArrayList<>();
         for (Item element : items) {
-            if (element != null && element.getName().equals(name)) {
-                result[index] = element;
-                index++;
+            if (element.getName().equals(name)) {
+                result.add(element);
             }
         }
         return result;
@@ -96,7 +78,7 @@ public class Tracker {
     public Item findById(String id) {
         Item result = null;
         for (Item element : items) {
-            if (element != null && element.getId().equals(id)) {
+            if (element.getId().equals(id)) {
                 result = element;
                 break;
             }

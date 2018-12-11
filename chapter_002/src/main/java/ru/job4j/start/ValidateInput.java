@@ -1,5 +1,6 @@
 package ru.job4j.start;
 
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -18,7 +19,7 @@ public class ValidateInput extends InputDecorator {
      * Обрабатывает исключения.
      */
     @Override
-    public int ask(String question, int[] range) {
+    public int ask(String question, List<Integer> range) {
         boolean invalid = true;
         int value = -1;
         do {

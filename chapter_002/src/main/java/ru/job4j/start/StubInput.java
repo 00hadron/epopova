@@ -1,5 +1,7 @@
 package ru.job4j.start;
 
+import java.util.List;
+
 /**
  * Класс StubInput для автоматизации пользовательских ответов.
  * @author epopova
@@ -23,11 +25,11 @@ public class StubInput implements Input {
 
 
     @Override
-    public int ask(String question, int[] range) {
-        int key = Integer.valueOf(this.ask(question));
+    public int ask(String question, List<Integer> range) {
+        Integer key = Integer.valueOf(this.ask(question));
         boolean flag = false;
-        for (int value : range) {
-            if (value == key) {
+        for (Integer value : range) {
+            if (value.equals(key)) {
                 flag = true;
                 break;
             }

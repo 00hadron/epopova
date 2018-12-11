@@ -3,10 +3,14 @@ package ru.job4j.start;
 import ru.job4j.tracker.Item;
 import ru.job4j.tracker.Tracker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Класс MenuTracker - реализация событий для класса StartUI, интрефейса UserAction с использоваинем внутр. и внешн. классов.
+ * (Все массивы заменены на List)
  * @author epopova
- * @since 01.05.2018
+ * @since 11.12.2018
  */
 
 /**
@@ -25,7 +29,7 @@ class EditItem extends BaseAction {
         String nextDesc = input.ask("Обновите desc : ");
         Item item = new Item(nextName, nextDesc);
         tracker.add(item);
-        Item[] items = tracker.findByName(name);
+        List<Item> items = tracker.findByName(name);
         int number = 1;
         for (Item element : items) {
             System.out.print(number + ". name --- " + element.getName() + " ---; (ID " + element.getId() + "); desc --- " + element.getDesc());
@@ -33,15 +37,15 @@ class EditItem extends BaseAction {
             tracker.replace(element.getId(), item);
             System.out.println("/ обновление заявки: name --- " + item.getName() + "; new desc --- " + item.getDesc());
         }
-        if (items.length == 0) {
+        if (items.size() == 0) {
             System.out.println("ххх ничего не найдено! ххх");
         }
     }
 }
 
 public class MenuTracker {
-    private UserAction[] action = new UserAction[7];
-    private int[] range = new int[action.length];
+    private List<UserAction> action = new ArrayList<UserAction>();
+    private List<Integer> range = new ArrayList<Integer>();
     private Tracker tracker;
     private Input input;
     private int position = 0;
@@ -51,7 +55,6 @@ public class MenuTracker {
      * @param input
      * @param tracker
      */
-
     public MenuTracker(Input input, Tracker tracker) {
         this.tracker = tracker;
         this.input = input;
@@ -61,16 +64,19 @@ public class MenuTracker {
      * Геттер поля диапазон допустимых ответов.
      * @return массив допустимых ответов.
      */
-    public int[] getRange() {
-        return this.range;
+    public List<Integer> getRange() {
+        List<Integer> result  =  this.range;
+        return result;
     }
 
     /**
      * Заполняет массив допустимых ответов.
      */
     private void fillRange() {
-        for (int index = 0; index != range.length; index++) {
-            this.range[index] = index;
+        int count = 0;
+        for (UserAction act : action) {
+            this.range.add(count);
+            count++;
         }
     }
 
@@ -79,13 +85,13 @@ public class MenuTracker {
      */
     public void fillActions() {
 
-        this.action[this.position] = this.new AddItem(this.position++, "Add new Item");
-        this.action[this.position] = new MenuTracker.ShowItem(this.position++, "Show all items");
-        this.action[this.position] = new EditItem(this.position++, "Edit item");
-        this.action[this.position] = new DeleteItem(this.position++, "Delete item");
-        this.action[this.position] = new FindByIdItem(this.position++, "Find item by Id");
-        this.action[this.position] = new FindByNameItem(this.position++, "Find items by name");
-        this.action[this.position] = new ExitProgram(this.position++, "Exit program");
+        this.action.add(new AddItem(this.position++, "Add new Item"));
+        this.action.add(new MenuTracker.ShowItem(this.position++, "Show all items"));
+        this.action.add(new EditItem(this.position++, "Edit item"));
+        this.action.add(new DeleteItem(this.position++, "Delete item"));
+        this.action.add(new FindByIdItem(this.position++, "Find item by Id"));
+        this.action.add(new FindByNameItem(this.position++, "Find items by name"));
+        this.action.add(new ExitProgram(this.position++, "Exit program"));
         this.fillRange();
     }
 
@@ -95,17 +101,15 @@ public class MenuTracker {
      *
      */
     public void select(int key) {
-        this.action[key].execute(this.input, this.tracker);
+        this.action.get(key).execute(this.input, this.tracker);
     }
 
     /**
      * Метод show - показывает в консоли все возможные действия списком.
      */
     public void show() {
-        for (int index = 0; index != action.length; index++) {
-            if (action[index] != null) {
-                System.out.println(action[index].info());
-            }
+        for (UserAction act : action) {
+            System.out.println(act.info());
         }
     }
 
@@ -143,7 +147,7 @@ public class MenuTracker {
                 System.out.println(number + ". name " + items.getName() + "; desc " + items.getDesc());
                 number++;
             }
-            if (tracker.findAll().length == 0) {
+            if (tracker.findAll().size() == 0) {
                 System.out.println("ххх ничего не найдено! ххх");
             }
         }
@@ -160,7 +164,7 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             System.out.println("---Удаление заявок с именем---");
             String name = input.ask("введите имя заявки : ");
-            Item[] result = tracker.findByName(name);
+            List<Item> result = tracker.findByName(name);
             int number = 1;
             for (Item element : result) {
                 tracker.delete(element.getId());
@@ -202,13 +206,13 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             System.out.println("--- Найдем заявки по имени ---");
             String name = input.ask("введите имя заявки : ");
-            Item[] result = tracker.findByName(name);
+            List<Item> result = tracker.findByName(name);
             int number = 1;
             for (Item element : result) {
                 System.out.println(number + ". name --- " + element.getName() + " ---; ID --- " + element.getId() + " ---");
                 number++;
             }
-            if (result.length == 0) {
+            if (result.size() == 0) {
                 System.out.println("ххх ничего не найдено! ххх");
             }
         }

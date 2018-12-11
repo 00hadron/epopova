@@ -3,6 +3,7 @@ import ru.job4j.tracker.*;
 
 /**
  * Класс StartUI для запуска программы и опроса пользователя.
+ * (Все массивы заменены на List)
  * @author epopova
  */
 public class StartUI {

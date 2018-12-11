@@ -1,7 +1,5 @@
 package ru.job4j.start;
 
-import ru.job4j.tracker.Tracker;
-
 public abstract class BaseAction implements UserAction {
     private final int key;
     private final String name;
