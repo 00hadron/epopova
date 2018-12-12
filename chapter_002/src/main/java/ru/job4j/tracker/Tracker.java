@@ -29,7 +29,14 @@ public class Tracker {
      * @param item - эти данные перезаписать в заменяемый элемент массива.
      * */
     public void replace(String id, Item item) {
-        items.set(items.indexOf(findById(id)), item);
+
+        for (int index = 0; index != items.size(); index++) {
+            if (items.get(index).getId().equals(id)) {
+                items.set(index, item);
+                break;
+            }
+        }
+
     }
 
     /**
@@ -37,7 +44,12 @@ public class Tracker {
      * @param id
      */
     public void delete(String id) {
-        items.remove(findById(id));
+        for (int index = 0; index != items.size(); index++) {
+            if (items.get(index).getId().equals(id)) {
+                items.remove(index);
+                break;
+            }
+        }
     }
 
     /**
