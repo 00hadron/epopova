@@ -1,12 +1,11 @@
 package ru.job4j.sort;
 
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
+
 /**
  * Сортировка пользователей.
  * (Структура treeset)
- * @version 0.1
+ * @version 0.2
  * @since 14.12.2018
  */
 public class SortUser {
@@ -16,9 +15,7 @@ public class SortUser {
      * @return
      */
     public Set<User> sort (List<User> list) {
-        Set<User> result;
-        result = new TreeSet<User>();
-        result.addAll(list);
+        Set<User> result = new TreeSet<User>(list);
         return result;
     }
 }
